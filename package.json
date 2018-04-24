@@ -7,6 +7,7 @@
     "jest-expo": "26.0.0",
     "lint-staged": "^7.0.4",
     "prettier": "1.12.1",
+    "pretty-quick": "^1.4.1",
     "react-native-scripts": "1.13.2",
     "react-test-renderer": "16.3.0-alpha.1"
   },
@@ -17,10 +18,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "jest",
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,json,css,md}": ["prettier --write", "git add"]
+    "precommit": "pretty-quick --staged"
   },
   "jest": {
     "preset": "jest-expo"
