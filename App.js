@@ -1,9 +1,6 @@
-import {
-    StackNavigator,
-} from 'react-navigation';
+import { StackNavigator } from "react-navigation";
 
 export const App = StackNavigator({
-    Home: { screen: HomeView },
-    Login: { screen: LoginView },
+  Home: { screen: HomeView },
+  Login: { screen: LoginView }
 });
-
