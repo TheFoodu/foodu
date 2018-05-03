@@ -15,7 +15,7 @@ export default class HomeView extends React.Component {
         <Text>Shake your phone to open the developer menu.</Text>
         <Button
           title="Login Button"
-          onPress={() => this.props.navigation.navigate('Login')}
+          onPress={() => this.props.navigation.navigate("Login")}
         >
           Login View
         </Button>
