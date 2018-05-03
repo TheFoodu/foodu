@@ -1,28 +1,9 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { StackNavigator } from "react-navigation"; // Version can be specified in package.json
-import HomeView from "./HomeView";
-import LoginView from "./LoginView";
-
-class HomeScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Home Screen</Text>
-      </View>
-    );
-  }
-}
-
-class DetailsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        <Text>Details Screen</Text>
-      </View>
-    );
-  }
-}
+import HomeView from "./Views/HomeView";
+import LoginView from "./Views/LoginView";
+import ScheduleWeekView from "./Views/ScheduleWeekView";
 
 const RootStack = StackNavigator(
   {
@@ -31,6 +12,9 @@ const RootStack = StackNavigator(
     },
     Login: {
       screen: LoginView
+    },
+    ScheduleWeek: {
+      screen: ScheduleWeekView
     }
   },
   {

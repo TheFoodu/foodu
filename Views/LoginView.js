@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Button, Image, StyleSheet, Text, View } from "react-native";
 
 export default class LoginView extends React.Component {
   render() {
@@ -8,6 +8,14 @@ export default class LoginView extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Login View</Text>
+        <Button
+          title="Go to HomeView"
+          onPress={() => this.props.navigation.navigate("HomeView")}
+        />
+        <Button
+          title="Go to ScheduleView"
+          onPress={() => this.props.navigation.navigate("ScheduleView")}
+        />
       </View>
     );
   }

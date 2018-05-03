@@ -8,14 +8,20 @@ export default class HomeView extends React.Component {
       <View style={styles.container}>
         <Image
           style={{ height: 50, width: 103 }}
-          source={require("./assets/foodu_logo.png")}
+          source={require("../assets/foodu_logo.png")}
         />
         <Text>Open up App.js to start working on your app!</Text>
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
         <Button
-          title="Login Button"
+          title="Go to LoginView"
           onPress={() => this.props.navigation.navigate("Login")}
+        >
+          Login View
+        </Button>
+        <Button
+          title="Go to ScheduleWeekView"
+          onPress={() => this.props.navigation.navigate("ScheduleWeek")}
         >
           Login View
         </Button>
