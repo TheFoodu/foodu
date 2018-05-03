@@ -16,15 +16,16 @@ export default class HomeView extends React.Component {
         <Button
           title="Go to LoginView"
           onPress={() => this.props.navigation.navigate("Login")}
-        >
-          Login View
-        </Button>
+        />
+        Login View
         <Button
           title="Go to ScheduleWeekView"
           onPress={() => this.props.navigation.navigate("ScheduleWeek")}
-        >
-          Login View
-        </Button>
+        />
+        <Button
+          title="Go to WalkthroughView"
+          onPress={() => this.props.navigation.navigate("Walkthrough")}
+        />
       </View>
     );
   }

@@ -1,24 +1,24 @@
 import React from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
 
-export default class LoginView extends React.Component {
+export default class WalkthroughView extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
 
     return (
       <View style={styles.container}>
-        <Text>Login View</Text>
+        <Text>ScheduleWeekView</Text>
         <Button
           title="Go to HomeView"
           onPress={() => this.props.navigation.navigate("Home")}
         />
         <Button
-          title="Go to ScheduleView"
-          onPress={() => this.props.navigation.navigate("ScheduleWeek")}
+          title="Go to LoginView"
+          onPress={() => this.props.navigation.navigate("Login")}
         />
         <Button
-          title="Go to WalkthroughView"
-          onPress={() => this.props.navigation.navigate("Walkthrough")}
+          title="Go to ScheduleWeekView"
+          onPress={() => this.props.navigation.navigate("ScheduleWeek")}
         />
       </View>
     );

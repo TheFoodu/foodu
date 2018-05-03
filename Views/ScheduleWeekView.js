@@ -10,11 +10,15 @@ export default class ScheduleWeekView extends React.Component {
         <Text>ScheduleWeekView</Text>
         <Button
           title="Go to HomeView"
-          onPress={() => this.props.navigation.navigate("HomeView")}
+          onPress={() => this.props.navigation.navigate("Home")}
         />
         <Button
           title="Go to LoginView"
-          onPress={() => this.props.navigation.navigate("LoginView")}
+          onPress={() => this.props.navigation.navigate("Login")}
+        />
+        <Button
+          title="Go to WalkthroughView"
+          onPress={() => this.props.navigation.navigate("Walkthrough")}
         />
       </View>
     );
