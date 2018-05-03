@@ -17,7 +17,7 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "jest",
-    "pretty": "pretty-quick"
+    "pretty": "prettier"
   },
   "jest": {
     "preset": "jest-expo"
