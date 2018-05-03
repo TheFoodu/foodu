@@ -1,30 +1,33 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { View, Text } from "react-native";
+import { StackNavigator } from "react-navigation"; // Version can be specified in package.json
+import HomeView from "./Views/HomeView";
+import LoginView from "./Views/LoginView";
+import ScheduleWeekView from "./Views/ScheduleWeekView";
+import WalkthroughView from "./Views/WalkthroughView";
+
+const RootStack = StackNavigator(
+  {
+    Home: {
+      screen: HomeView
+    },
+    Login: {
+      screen: LoginView
+    },
+    ScheduleWeek: {
+      screen: ScheduleWeekView
+    },
+    Walkthrough: {
+      screen: WalkthroughView
+    }
+  },
+  {
+    initialRouteName: "Home"
+  }
+);
 
 export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Image
-          style={{ height: 50, width: 103 }}
-          source={require("./assets/foodu_logo.png")}
-        />
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-      </View>
-    );
+    return <RootStack />;
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  headerText: {
-    fontSize: 20
-  }
-});
