@@ -1,8 +1,9 @@
 import React from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 
-export default class App extends React.Component {
+export default class HomeView extends React.Component {
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
         <Image
