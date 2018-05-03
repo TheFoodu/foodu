@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Button, Image, StyleSheet, Text, View } from "react-native";
 
 export default class HomeView extends React.Component {
   render() {
@@ -13,6 +13,12 @@ export default class HomeView extends React.Component {
         <Text>Open up App.js to start working on your app!</Text>
         <Text>Changes you make will automatically reload.</Text>
         <Text>Shake your phone to open the developer menu.</Text>
+        <Button
+          title="Login Button"
+          onPress={() => this.props.navigation.navigate('Login')}
+        >
+          Login View
+        </Button>
       </View>
     );
   }

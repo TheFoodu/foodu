@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 import { StackNavigator } from "react-navigation"; // Version can be specified in package.json
 import HomeView from "./HomeView";
+import LoginView from "./LoginView";
 
 class HomeScreen extends React.Component {
   render() {
@@ -28,8 +29,8 @@ const RootStack = StackNavigator(
     Home: {
       screen: HomeView
     },
-    Details: {
-      screen: DetailsScreen
+    Login: {
+      screen: LoginView
     }
   },
   {
