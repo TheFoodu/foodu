@@ -1,0 +1,81 @@
+import React from "react";
+<<<<<<< Updated upstream
+import { View, Text } from "react-native";
+import { StackNavigator } from "react-navigation"; // Version can be specified in package.json
+import HomeView from "./Views/HomeView";
+import LoginView from "./Views/LoginView";
+import ScheduleWeekView from "./Views/ScheduleWeekView";
+import WalkthroughView from "./Views/WalkthroughView";
+
+const RootStack = StackNavigator(
+  {
+    Home: {
+      screen: HomeView
+    },
+    Login: {
+      screen: LoginView
+    },
+    ScheduleWeek: {
+      screen: ScheduleWeekView
+    },
+    Walkthrough: {
+      screen: WalkthroughView
+    }
+  },
+  {
+    initialRouteName: "Home"
+  }
+);
+=======
+import { Image, StyleSheet, Text, View } from "react-native";
+import text from "./src/style/text";
+import Header from "./src/components/header";
+>>>>>>> Stashed changes
+
+export default class App extends React.Component {
+  constructor(props) {
+      super(props);
+      this.state = {
+        currentPage: "app"
+      }
+  }
+
+  page () {
+    if(this.state.currentPage === "app") {
+      return (
+        <View style={styles.container}>
+          <Text style={ text.p }>Open up App.js to start working on the app!</Text>
+          <Text>Changes you make will automatically reload.</Text>
+          <Text>Shake your phone to open the developer menu.</Text>
+        </View>
+      ) 
+    }
+  }
+
+  render() {
+<<<<<<< Updated upstream
+    return <RootStack />;
+  }
+}
+=======
+    return (
+      <View style={styles.container}>
+        <Header style={styles}/>
+        {this.page()}
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  header: {
+    fontSize: 20
+  }
+});
+>>>>>>> Stashed changes

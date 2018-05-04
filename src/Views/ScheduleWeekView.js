@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
+import Footer from "../Components/footer";
 
 export default class ScheduleWeekView extends React.Component {
   render() {
@@ -7,19 +8,12 @@ export default class ScheduleWeekView extends React.Component {
 
     return (
       <View style={styles.container}>
+        <Image
+          style={{ height: 50, width: 103 }}
+          source={require("../public/foodu_logo.png")}
+        />
         <Text>ScheduleWeekView</Text>
-        <Button
-          title="Go to HomeView"
-          onPress={() => this.props.navigation.navigate("Home")}
-        />
-        <Button
-          title="Go to LoginView"
-          onPress={() => this.props.navigation.navigate("Login")}
-        />
-        <Button
-          title="Go to WalkthroughView"
-          onPress={() => this.props.navigation.navigate("Walkthrough")}
-        />
+        <Footer navigate={navigate}/>
       </View>
     );
   }

@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { StackNavigator } from "react-navigation"; // Version can be specified in package.json
-import HomeView from "./Views/HomeView";
-import LoginView from "./Views/LoginView";
-import ScheduleWeekView from "./Views/ScheduleWeekView";
-import WalkthroughView from "./Views/WalkthroughView";
+import HomeView from "./src/Views/HomeView";
+import LoginView from "./src/Views/LoginView";
+import ScheduleWeekView from "./src/Views/ScheduleWeekView";
+import WalkthroughView from "./src/Views/WalkthroughView";
 
 const RootStack = StackNavigator(
   {
