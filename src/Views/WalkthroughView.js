@@ -8,10 +8,6 @@ export default class WalkthroughView extends React.Component {
 
     return (
       <View style={styles.container}>
-        <Image
-          style={{ height: 50, width: 103 }}
-          source={require("../public/foodu_logo.png")}
-        />
         <Text>ScheduleWeekView</Text>
         <Footer navigate={navigate}/>
       </View>
