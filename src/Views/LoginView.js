@@ -5,10 +5,11 @@ import Footer from "../Components/footer";
 export default class LoginView extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
-
     return (
       <View style={styles.container}>
-        <Text>Login View</Text>
+        <View style={styles.logoContainer}>
+          <Image source={require('../public/foodu_logo.png')} />
+        </View>
         <Footer navigate={navigate}/>
       </View>
     );
@@ -23,6 +24,6 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   headerText: {
-    fontSize: 20
+    fontSize: 20  
   }
 });
