@@ -2,18 +2,19 @@ import React from "react";
 import { StyleSheet, View, TextInput, Alert } from "react-native";
 
 export default class LoginForm extends React.Component {
-    submitLogin() {
-        Alert.alert("Ready to login!");
+    _submitLogin = () => {
+        this.props.navigate("ScheduleWeek");
     }
+
     render() {
         return (
          <View style={styles.container}>
             <TextInput placeholder="Email"
-                       placeholderTextColor="rgba(244, 244, 244, 0.7)"
+                       placeholderTextColor="#f8f8f8"
                        style={styles.input} />
-            <TextInput onSubmitEditing={this.submitLogin}
+            <TextInput onSubmitEditing={this._submitLogin}
                        placeholder="Password" 
-                       placeholderTextColor="rgba(244, 244, 244, 0.7)"
+                       placeholderTextColor="#f8f8f8"
                        style={styles.input} />
          </View>
         );
