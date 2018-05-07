@@ -7,7 +7,8 @@ import { LINK_COLOR } from "../constants";
 export default class LoginView extends React.Component {
   render() {
     const { navigate } = this.props.navigation;
-    return <View style={styles.container}>
+    return (
+      <View style={styles.container}>
         <View>
           <Image style={styles.logo} source={require("../Images/foodu_logo.png")} />
         </View>
@@ -21,7 +22,8 @@ export default class LoginView extends React.Component {
           <Text style={styles.emailInfo}>to register!</Text>
         </Text>
         <Footer navigate={navigate} />
-      </View>;
+      </View>
+    );
   }
 }
 
