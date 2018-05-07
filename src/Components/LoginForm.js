@@ -1,14 +1,18 @@
 import React from "react";
-import { StyleSheet, View, TextInput } from "react-native";
+import { StyleSheet, View, TextInput, Alert } from "react-native";
 
 export default class LoginForm extends React.Component {
+    submitLogin() {
+        Alert.alert("Ready to login!");
+    }
     render() {
         return (
          <View style={styles.container}>
             <TextInput placeholder="Email"
                        placeholderTextColor="rgba(244, 244, 244, 0.7)"
                        style={styles.input} />
-            <TextInput placeholder="Password" 
+            <TextInput onSubmitEditing={this.submitLogin}
+                       placeholder="Password" 
                        placeholderTextColor="rgba(244, 244, 244, 0.7)"
                        style={styles.input} />
          </View>
