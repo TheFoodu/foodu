@@ -8,9 +8,6 @@ import WalkthroughView from "./src/Views/WalkthroughView";
 
 const RootStack = StackNavigator(
   {
-    Home: {
-      screen: HomeView
-    },
     Login: {
       screen: LoginView
     },
@@ -22,7 +19,7 @@ const RootStack = StackNavigator(
     }
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: "Login"
   }
 );
 

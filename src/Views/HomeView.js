@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
-import Footer from "../Components/footer";
+import Footer from "../Components/Footer";
 
 export default class HomeView extends React.Component {  // }
   render() {
