@@ -6,7 +6,7 @@ export default class ScheduleDetail extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-          requested: false
+          hasRequestedBooking: false
       };
     }
   
@@ -19,7 +19,7 @@ export default class ScheduleDetail extends React.Component {
     }
 
     _getDetailSection = () => {
-        return this.state.requested ? this._getRequestedBooking() : this._getSearchSection();
+        return this.state.hasRequestedBooking ? this._getRequestedBooking() : this._getSearchSection();
     };
 
     _getRequestedBooking = () => {
@@ -45,7 +45,7 @@ export default class ScheduleDetail extends React.Component {
 
     render() {
         return (
-            <TouchableOpacity onPress={() => this.setState({ requested: !this.state.requested})}>
+            <TouchableOpacity onPress={() => this.setState({ hasRequestedBooking: !this.state.hasRequestedBooking})}>
                 <View style={ styles.container }>
                     { this._getDetailSection() }
                 </View>

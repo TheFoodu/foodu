@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
 import Footer from "../Components/Footer";
-import ScheduleDetail from "../Components/ScheduleDetail";
+import ScheduleWeek from "../Components/ScheduleWeek";
 
 export default class ScheduleWeekView extends React.Component {
   static navigationOptions = {
@@ -13,8 +13,7 @@ export default class ScheduleWeekView extends React.Component {
     
     return (
       <View style={styles.container}>
-        <ScheduleDetail />
-        <Footer navigate={navigate}/>
+        <ScheduleWeek />
       </View>
     );
     
