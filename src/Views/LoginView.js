@@ -5,6 +5,10 @@ import LoginForm from "../Components/LoginForm";
 import { LINK_COLOR } from "../constants";
 
 export default class LoginView extends React.Component {
+  static navigationOptions = {
+    header: null,
+  };
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -12,7 +16,7 @@ export default class LoginView extends React.Component {
         <View>
           <Image style={styles.logo} source={require("../Images/foodu_logo.png")} />
         </View>
-        <LoginForm />
+        <LoginForm navigate={navigate}/>
         <Text style={styles.emailInfoContainer}>
           <Text style={styles.emailInfo}>Contact</Text>
           <Text style={[styles.emailInfo, { color: LINK_COLOR }]} 
@@ -21,7 +25,6 @@ export default class LoginView extends React.Component {
           </Text>
           <Text style={styles.emailInfo}>to register!</Text>
         </Text>
-        <Footer navigate={navigate} />
       </View>
     );
   }
@@ -31,9 +34,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
     justifyContent: "center",
-    paddingTop: 10
+    alignItems: "center"
   },
   logo: {
     height: 110,
