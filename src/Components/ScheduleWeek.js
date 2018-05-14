@@ -1,67 +1,33 @@
 import React from "react";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
-import GestureRecognizer, { swipeDirections } from "react-native-swipe-gestures"
-import ScheduleDetail from "../Components/ScheduleDetail"
 
 export default class ScheduleWeek extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        myText: 'I\'m ready to get swiped!',
-        gestureName: 'none',
-        backgroundColor: '#fff'
       };
-    }
-
-    onSwipeUp(gestureState) {
-    this.setState({myText: 'You swiped up!'});
-    }
-    
-    onSwipeDown(gestureState) {
-    this.setState({myText: 'You swiped down!'});
-    }
-    
-    onSwipeLeft(gestureState) {
-    this.setState({myText: 'You swiped left!'});
-    }
-    
-    onSwipeRight(gestureState) {
-    this.setState({myText: 'You swiped right!'});
-    }
-    
-    onSwipe(gestureName, gestureState) {
-        this.setState({gestureName: gestureName});
     }
     
     render() {
-        const config = {
-            velocityThreshold: 0.3,
-            directionalOffsetThreshold: 80
-        };
+        const childrenCount = this.props.children.childrenCount
         return (
-            <GestureRecognizer
-                onSwipe={(direction, state) => this.onSwipe(direction, state)}
-                onSwipeUp={(state) => this.onSwipeUp(state)}
-                onSwipeDown={(state) => this.onSwipeDown(state)}
-                onSwipeLeft={(state) => this.onSwipeLeft(state)}
-                onSwipeRight={(state) => this.onSwipeRight(state)}
-                config={config}
-                style={styles.container}
-            >
+            <View style={styles.container}>
                 <View style={styles.dateContainer}>
-                    <Text style={styles.dateText}>This is a Date</Text>
+                    <Text style={styles.dateText}>{this.props.weekText}</Text>
                 </View>
-                <ScrollView>
-                    <ScheduleDetail />
-                    <ScheduleDetail />
-                    <ScheduleDetail />
-                    <ScheduleDetail />
-                    <ScheduleDetail />
-                    <ScheduleDetail />
-                    <ScheduleDetail />
-                    <ScheduleDetail />
+                <ScrollView pagingEnabled={true} style={styles.daysContainer}>
+                    {
+                        React.Children.map(this.props.children, (c,i) => {
+                            if(i === 0) {
+                                return React.cloneElement(c, {...c.props, ...{location: 'first'}})
+                            } else if(i === childrenCount) {
+                                return React.cloneElement(c, {...c.props, ...{location: 'last'}})
+                            }
+                            return c;
+                        })
+                    }
                 </ScrollView>
-            </GestureRecognizer>
+            </View>
         );
     }
 }
@@ -75,12 +41,18 @@ const styles = StyleSheet.create({
     dateContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 40
+        height: 30,
+        backgroundColor: '#555'
     },
     dateText: {
+        color: '#f8f8f8',
         fontSize: 18,
     },
     text: {
         fontSize: 24
+    },
+    daysContainer: {
+        flex: 1,
+        paddingBottom: 10
     }
 });
