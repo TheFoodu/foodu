@@ -12,7 +12,7 @@ const RootStack = StackNavigator(
     Walkthrough: { screen: WalkthroughView }
   },
   {
-    initialRouteName: "ScheduleWeek"
+    initialRouteName: "Login"
   }
 );
 

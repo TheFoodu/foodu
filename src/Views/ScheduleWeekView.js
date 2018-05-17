@@ -110,11 +110,12 @@ export default class ScheduleWeekView extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <ScrollView 
-        horizontal= {true}
+        horizontal= {true} 
+        snapToInterval={width} 
         snapToAlignment={"center"}
       >
         {this.state.bookingByWeeks.map((week,i) => (
-          <ScheduleWeek key={i} weekText={week.month + " " + week.startDate.toString() + " - " + week.endDate.toString()} style={styles.container}>
+          <ScheduleWeek key={i} weekText={moment(week.startDate).format('MMMM Do') + " - " + moment(week.endDate).format('MMMM Do')} style={styles.container}>
             {week.bookings.map(booking => <ScheduleDetail key={booking.UUID} {...booking} />)}
           </ScheduleWeek>
         ))} 
