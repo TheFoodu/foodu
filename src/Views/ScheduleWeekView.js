@@ -3,8 +3,9 @@ import moment from "moment";
 import Footer from "../Components/Footer";
 import ScheduleWeek from "../Components/ScheduleWeek";
 import ScheduleDetail from "../Components/ScheduleDetail"
-import { Button, Image, StyleSheet, Text, View } from "react-native";
+import { Button, Image, StyleSheet, Text, View, ScrollView, Dimensions } from "react-native";
 import GestureRecognizer, { swipeDirections } from "react-native-swipe-gestures";
+const { width } = Dimensions.get('window');
 
 export default class ScheduleWeekView extends React.Component {
   constructor(props) {
@@ -50,8 +51,17 @@ export default class ScheduleWeekView extends React.Component {
       {UUID: 2, date: new Date().AddDays(1), name: "Venue 2", address: "Venue Address", timeRange: '7:00 PM - 9:00 PM'},
       {UUID: 3, date: new Date().AddDays(3), name: "Venue 3", address: "Venue Address", timeRange: '2:00 PM - 7:00 PM'},
       {UUID: 4, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
-      {UUID: 5, date: new Date().AddDays(7), name: "Venue 5", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
-      {UUID: 6, date: new Date().AddDays(12), name: "Venue 6", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'}
+      {UUID: 5, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 6, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 7, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 8, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 9, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 10, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 11, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 12, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 13, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 14, date: new Date().AddDays(7), name: "Venue 5", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 15, date: new Date().AddDays(12), name: "Venue 6", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'}
     ]
 
     let weeks = [];
@@ -99,24 +109,16 @@ export default class ScheduleWeekView extends React.Component {
   render() {;
     const { navigate } = this.props.navigation;
     return (
-      <GestureRecognizer
-        onSwipe={(direction, state) => this.onSwipe(direction, state)}
-        onSwipeLeft={(state) => this.onSwipeLeft(state)}
-        onSwipeRight={(state) => this.onSwipeRight(state)}
-        config={{
-          velocityThreshold: 0.3,
-          directionalOffsetThreshold: 120
-        }}
-        style={styles.container}
+      <ScrollView 
+        horizontal= {true}
+        snapToAlignment={"center"}
       >
-        <View style={styles.container}>
-          {this.state.bookingByWeeks.map(week => (
-            <ScheduleWeek weekText={week.month + " " + week.startDate.toString() + " - " + week.endDate.toString()} style={styles.container}>
-              {week.bookings.map(booking => <ScheduleDetail key={booking.UUID} {...booking} />)}
-            </ScheduleWeek>
-          ))} 
-        </View>
-      </GestureRecognizer>
+        {this.state.bookingByWeeks.map((week,i) => (
+          <ScheduleWeek key={i} weekText={week.month + " " + week.startDate.toString() + " - " + week.endDate.toString()} style={styles.container}>
+            {week.bookings.map(booking => <ScheduleDetail key={booking.UUID} {...booking} />)}
+          </ScheduleWeek>
+        ))} 
+      </ScrollView>
     );
     
   }
@@ -130,8 +132,7 @@ Date.prototype.AddDays = function(days) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "stretch"
+    flex: 1
   },
   headerText: {
     fontSize: 20
