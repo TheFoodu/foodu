@@ -16,7 +16,7 @@ export default class ScheduleDetail extends React.Component {
     }
 
     _onSearchPress = (date) => {
-        this.props.navigate("Map", { searchDate: date })
+        this.props.navigate("Map", { searchDate: this.props.date })
     }
 
     _getDetailSection = () => {
@@ -36,21 +36,21 @@ export default class ScheduleDetail extends React.Component {
 
     _getSearchSection = () => {
         return (
-            <View style={ [styles.containerBox, { justifyContent: "center", alignItems: "center" }] }>
-                <Text style={ styles.detailText }>Select Venue</Text>
-            </View>
+            <TouchableOpacity onPress={this._onSearchPress}>
+                <View style={ [styles.containerBox, { justifyContent: "center", alignItems: "center" }] }>
+                    <Text style={ styles.detailText }>Select Venue</Text>
+                </View>
+            </TouchableOpacity>
         );
     }
 
     render() {
         const firstOrLastStyling = (this.props.location === "first") ? styles.first : (this.props.location === "last") ? styles.last : {};
         return (
-            <TouchableOpacity onPress={() => this.setState({ hasRequestedBooking: !this.state.hasRequestedBooking})}>
-                <View style={ [styles.container, firstOrLastStyling] }>
-                    <Text style={ styles.dateText }>{moment(this.props.date).format('ddd D YYYY')}</Text>
-                    { this._getDetailSection() }
-                </View>
-            </TouchableOpacity>
+            <View style={ [styles.container, firstOrLastStyling] }>
+                <Text style={ styles.dateText }>{moment(this.props.date).format('ddd D YYYY')}</Text>
+                { this._getDetailSection() }
+            </View>
         );
     }
 }

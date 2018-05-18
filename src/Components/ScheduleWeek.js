@@ -12,11 +12,11 @@ export default class ScheduleWeek extends React.Component {
     render() {
         const childrenCount = this.props.children.childrenCount
         return (
-            <View style={styles.container}>
+            <View style={[styles.container, { width: this.props.deviceWidth }]}>
                 <View style={styles.dateContainer}>
                     <Text style={styles.dateText}>{this.props.weekText}</Text>
                 </View>
-                <ScrollView pagingEnabled={true} style={styles.daysContainer}>
+                <ScrollView style={styles.daysContainer}>
                     {
                         React.Children.map(this.props.children, (c,i) => {
                             if(i === 0) {
@@ -35,8 +35,7 @@ export default class ScheduleWeek extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        width: width
+        flex: 1
     },
     dateContainer: {
         justifyContent: 'center',
@@ -47,9 +46,6 @@ const styles = StyleSheet.create({
     dateText: {
         color: '#f8f8f8',
         fontSize: 18,
-    },
-    text: {
-        fontSize: 24
     },
     daysContainer: {
         flex: 1,
