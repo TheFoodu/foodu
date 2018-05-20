@@ -1,12 +1,13 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
-import Footer from "../Components/Footer"
+import Footer from "../Components/Footer";
+import moment from "moment";
 
 export default class ScheduleDetail extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-          requested: false
+          hasRequestedBooking: false
       };
     }
   
@@ -15,41 +16,41 @@ export default class ScheduleDetail extends React.Component {
     }
 
     _onSearchPress = (date) => {
-        this.props.navigate("Map", { searchDate: date })
+        this.props.navigate("Map", { searchDate: this.props.date })
     }
 
     _getDetailSection = () => {
-        return this.state.requested ? this._getRequestedBooking() : this._getSearchSection();
+        return this.state.hasRequestedBooking ? this._getRequestedBooking() : this._getSearchSection();
     };
 
     _getRequestedBooking = () => {
+        const {name, address, timeRange} = this.props;
         return (
-            <View>
-                <Text style={ styles.dateText }>Sunday 12 2018</Text>
-                <View style={ [styles.containerBox, { backgroundColor: "#FFFBB5" }] }>
-                    <Text style={ [styles.detailText, { fontWeight: 'bold' }] }>Venue Name</Text>
-                    <Text style={ styles.detailText }>Venue Address</Text>
-                    <Text style={ styles.detailText }>Booking Time Range</Text>
-                </View>            
-            </View>
+            <View style={ [styles.containerBox, { backgroundColor: "#FFFBB5" }] }>
+                <Text style={ [styles.detailText, { fontWeight: 'bold' }] }>{name}</Text>
+                <Text style={ styles.detailText }>{address}</Text>
+                <Text style={ styles.detailText }>{timeRange}</Text>
+            </View>            
         );
     }
 
     _getSearchSection = () => {
         return (
-            <View style={ [styles.containerBox, { justifyContent: "center", alignItems: "center" }] }>
-                <Text style={ styles.detailText }>Select Venue</Text>
-            </View>
+            <TouchableOpacity onPress={this._onSearchPress}>
+                <View style={ [styles.containerBox, { justifyContent: "center", alignItems: "center" }] }>
+                    <Text style={ styles.detailText }>Select Venue</Text>
+                </View>
+            </TouchableOpacity>
         );
     }
 
     render() {
+        const firstOrLastStyling = (this.props.location === "first") ? styles.first : (this.props.location === "last") ? styles.last : {};
         return (
-            <TouchableOpacity onPress={() => this.setState({ requested: !this.state.requested})}>
-                <View style={ styles.container }>
-                    { this._getDetailSection() }
-                </View>
-            </TouchableOpacity>
+            <View style={ [styles.container, firstOrLastStyling] }>
+                <Text style={ styles.dateText }>{moment(this.props.date).format('ddd D YYYY')}</Text>
+                { this._getDetailSection() }
+            </View>
         );
     }
 }
@@ -57,7 +58,6 @@ export default class ScheduleDetail extends React.Component {
 const styles = StyleSheet.create({
     container: {
         alignItems: "stretch",
-        margin: 5,
         padding: 5,
         borderTopWidth: 0.7,
         borderTopColor: "#f8f8f8",
@@ -77,5 +77,12 @@ const styles = StyleSheet.create({
     },
     detailText: {
         fontSize: 18
+    },
+    first: {
+        borderTopWidth: 0,
+        paddingTop: 2
+    },
+    last: {
+        borderBottomWidth: 0
     }
 });
