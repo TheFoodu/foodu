@@ -17,7 +17,7 @@ const RootStack = StackNavigator(
     Map: { screen: MapView }
   },
   {
-    initialRouteName: "Calendar"
+    initialRouteName: "Login"
   },
 );
 
