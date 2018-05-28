@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { MapView, Marker } from "expo";
+import MapViewCallout from "../Components/MapViewCallout";
 import { LINK_COLOR } from "../constants";
 
 export default class LoginView extends React.Component {
@@ -49,10 +50,12 @@ export default class LoginView extends React.Component {
           <MapView.Marker
             key={index}
             coordinate={marker.latlng}
-            title={marker.title}
-            description={marker.description}
             image={require("../Images/pin-sNormal_1.png")}
-          />
+          >
+            <MapView.Callout tooltip={true}>
+              <MapViewCallout {...marker} />
+            </MapView.Callout>
+          </MapView.Marker>
         ))}
       </MapView>
     );

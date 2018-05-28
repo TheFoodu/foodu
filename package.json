@@ -4,9 +4,9 @@
   "private": true,
   "devDependencies": {
     "jest-expo": "26.0.0",
-    "lint-staged": "^7.0.4",
+    "lint-staged": "7.0.4",
     "prettier": "1.12.1",
-    "pretty-quick": "^1.4.1",
+    "pretty-quick": "1.4.1",
     "react-native-scripts": "1.13.2",
     "react-test-renderer": "16.3.0-alpha.1"
   },
@@ -23,11 +23,11 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "expo": "^26.0.0",
-    "firebase": "^5.0.4",
+    "expo": "26.0.0",
+    "firebase": "5.0.4",
     "react": "16.3.0",
-    "react-native": "~0.54.1",
-    "react-native-calendars": "^1.19.3"
-    "react-navigation": "^1.5.11"
+    "react-native": "0.54.1",
+    "react-native-calendars": "1.19.3",
+    "react-navigation": "1.5.11"
   }
 }
