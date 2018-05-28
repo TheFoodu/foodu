@@ -4,6 +4,7 @@ import { StackNavigator } from "react-navigation"; // Version can be specified i
 import LoginView from "./src/Views/LoginView";
 import ScheduleWeekView from "./src/Views/ScheduleWeekView";
 import WalkthroughView from "./src/Views/WalkthroughView";
+import CalendarView from "./src/Views/CalendarView";
 import MapView from "./src/Views/MapView";
 
 const RootStack = StackNavigator(
@@ -11,6 +12,7 @@ const RootStack = StackNavigator(
     Login: { screen: LoginView },
     ScheduleWeek: { screen: ScheduleWeekView },
     Walkthrough: { screen: WalkthroughView },
+    Calendar: { screen: CalendarView },
     Map: { screen: MapView }
   },
   {
