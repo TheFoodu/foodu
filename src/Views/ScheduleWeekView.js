@@ -115,7 +115,8 @@ export default class ScheduleWeekView extends React.Component {
 
   render() {;
     const { navigate } = this.props.navigation;
-    return <View style={styles.container}>
+    return(
+      <View style={styles.container}>
         <ScrollView onLayout={event => {
             // Handle rotation
             let { x, y, width, height } = event.nativeEvent.layout;
@@ -139,6 +140,7 @@ export default class ScheduleWeekView extends React.Component {
           </Image>
         </TouchableHighlight>
       </View>
+    )
   }
 }
 
