@@ -3,8 +3,7 @@ import moment from "moment";
 import Footer from "../Components/Footer";
 import ScheduleWeek from "../Components/ScheduleWeek";
 import ScheduleDetail from "../Components/ScheduleDetail"
-import { Button, Image, StyleSheet, Text, ScrollView, Dimensions } from "react-native";
-import GestureRecognizer, { swipeDirections } from "react-native-swipe-gestures";
+import { StyleSheet, Text, ScrollView, Dimensions, View, Image, TouchableHighlight } from "react-native";
 const { width } = Dimensions.get('window');
 
 export default class ScheduleWeekView extends React.Component {
@@ -27,7 +26,7 @@ export default class ScheduleWeekView extends React.Component {
       deviceWidth: width
     };
   }
-  
+
   static navigationOptions = {
     title: 'Weekly Schedule',
   };
@@ -35,11 +34,11 @@ export default class ScheduleWeekView extends React.Component {
   onSwipeLeft(gestureState) {
     //todo
   }
-  
+
   onSwipeRight(gestureState) {
     //todo
   }
-  
+
   onSwipe(gestureName, gestureState) {
     this.setState({gestureName: gestureName, weekText: gestureName + " at " + moment().format('h:mm:ss a')});
   }
@@ -53,7 +52,7 @@ export default class ScheduleWeekView extends React.Component {
           bookings: []
         },
         amountOfBookings = bookings.length
-    
+
     bookings.forEach((booking, i) => {
       let date = moment(booking.date),
           lastOfWeek = date.endOf('week').toDate(),
@@ -116,28 +115,32 @@ export default class ScheduleWeekView extends React.Component {
 
   render() {;
     const { navigate } = this.props.navigation;
-    return (
-      <ScrollView
-        onLayout={(event) => {
+    return(
+      <View style={styles.container}>
+        <ScrollView onLayout={event => {
             // Handle rotation
-            let {x, y, width, height} = event.nativeEvent.layout;
-            this.setState({deviceWidth: width})
-        }}
-        pagingEnabled={true}
-        horizontal={true}>
-        {this.state.bookingByWeeks.map(week => {
-          let range = this.rangeTextFormatter(week)
-          return (
-            <ScheduleWeek 
-              key={range}
-              weekText={range}
-              deviceWidth={this.state.deviceWidth}>
-              {week.bookings.map(booking => <ScheduleDetail key={booking.UUID} {...booking} navigate={navigate} />)}
-            </ScheduleWeek>)
-        })} 
-      </ScrollView>
-    );
-    
+            let { x, y, width, height } = event.nativeEvent.layout;
+            this.setState({ deviceWidth: width });
+          }} pagingEnabled={true} horizontal={true}>
+          {this.state.bookingByWeeks.map(week => {
+            let range = this.rangeTextFormatter(week);
+            return <ScheduleWeek key={range} weekText={range} deviceWidth={this.state.deviceWidth}>
+                {week.bookings.map(booking => (
+                  <ScheduleDetail
+                    key={booking.UUID}
+                    {...booking}
+                    navigate={navigate}
+                  />
+                ))}
+              </ScheduleWeek>;
+          })}
+        </ScrollView>
+        <TouchableHighlight style={styles.plusButton} onPress={() => navigate("Calendar")}>
+          <Image source={require('../Images/plus.png')}>
+          </Image>
+        </TouchableHighlight>
+      </View>
+    )
   }
 }
 
@@ -147,3 +150,22 @@ Date.prototype.AddDays = function(days) {
   return dat;
 }
 
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "flex-end",
+},
+plusButton: {
+    position: 'absolute',
+    right: 20,
+    bottom: 20,
+    backgroundColor: "#E06C63",
+    width: 75,
+    height: 75,
+    borderRadius: 75/2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});

@@ -5,7 +5,7 @@ const color = StyleSheet.create({
       color: '#E06C63'
     },
     lightOrange: {
-        color: '#E88922 '
+        color: '#E88922'
       },
       brown: {
         color: '#411121'
