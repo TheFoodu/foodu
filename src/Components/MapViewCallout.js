@@ -9,7 +9,7 @@ const MapViewCallout = props => {
         <Text>{props.marker.description}</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Button style={styles.button} title="Request" onPress={() => {}} />
+        <Button color="white" title="Request" onPress={() => {}} />
       </View>
     </View>
   );
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     width: "70%"
   },
   buttonContainer: {
-    backgroundColor: "pink",
+    backgroundColor: "#E06C63",
     width: "30%",
     justifyContent: "center",
     alignItems: "center"
