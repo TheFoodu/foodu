@@ -14,6 +14,10 @@ export default class LoginForm extends React.Component {
   }
 
   _submitLogin = (email, password) => {
+    if (email === "" && password === "") {
+      this.props.navigate("ScheduleWeek");
+      return;
+    }
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
