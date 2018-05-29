@@ -37,6 +37,7 @@ export default class LoginForm extends React.Component {
           placeholderTextColor="#f8f8f8"
           style={styles.input}
           autoCapitalize="none"
+          underlineColorAndroid='transparent'
           value={this.state.email}
           onChangeText={text => this.setState({ email: text })}
         />
@@ -47,6 +48,7 @@ export default class LoginForm extends React.Component {
           placeholderTextColor="#f8f8f8"
           style={styles.input}
           autoCapitalize="none"
+          underlineColorAndroid='transparent'
           value={this.state.password}
           onChangeText={text => this.setState({ password: text })}
         />
