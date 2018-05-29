@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, StyleSheet, View, TextInput, Alert } from "react-native";
+import { Button, StyleSheet, View, TextInput, Alert, TouchableHighlight, Text } from "react-native";
 
 import firebase from "../../firebase";
 
@@ -52,12 +52,14 @@ export default class LoginForm extends React.Component {
           value={this.state.password}
           onChangeText={text => this.setState({ password: text })}
         />
-        <Button
-          title="Login"
+        <TouchableHighlight
+          style={styles.signInContainer}
           onPress={() =>
             this._submitLogin(this.state.email, this.state.password)
           }
-        />
+        >
+          <Text style={styles.signInText}>Sign In</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -66,6 +68,24 @@ export default class LoginForm extends React.Component {
 const styles = StyleSheet.create({
   container: {
     padding: 20
+  },
+  signInContainer: {
+    backgroundColor: "#E06C63",
+    borderRadius: 20,
+    height: 40,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 3
+    },
+    shadowRadius: 5,
+    shadowOpacity: 1.0
+  },
+  signInText: {
+    textAlign: 'center',
+    color: '#fff',
+    fontSize: 14,
+    lineHeight: 40
   },
   input: {
     height: 40,
