@@ -1,9 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import BaseView from "./BaseView";
 import { MapView, Marker } from "expo";
 import { LINK_COLOR } from "../constants";
 
-export default class LoginView extends React.Component {
+export default class LoginView extends BaseView {
   constructor() {
     super();
 
@@ -28,10 +29,6 @@ export default class LoginView extends React.Component {
       ]
     };
   }
-
-  static navigationOptions = {
-    title: "Request Booking"
-  };
 
   render() {
     const { navigate } = this.props.navigation;

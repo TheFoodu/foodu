@@ -1,8 +1,9 @@
 import React from "react";
 import { Button, Image, StyleSheet, Text, View } from "react-native";
+import BaseView from "./BaseView";
 import Footer from "../Components/Footer";
 
-export default class WalkthroughView extends React.Component {
+export default class WalkthroughView extends BaseView {
   render() {
     const { navigate } = this.props.navigation;
 

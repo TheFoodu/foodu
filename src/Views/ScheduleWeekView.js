@@ -1,12 +1,12 @@
 import React from "react";
 import moment from "moment";
-import Footer from "../Components/Footer";
+import { StyleSheet, Text, ScrollView, Dimensions, View, Image, TouchableHighlight } from "react-native";
+import BaseView from "./BaseView"; 
 import ScheduleWeek from "../Components/ScheduleWeek";
 import ScheduleDetail from "../Components/ScheduleDetail"
-import { StyleSheet, Text, ScrollView, Dimensions, View, Image, TouchableHighlight } from "react-native";
 const { width } = Dimensions.get('window');
 
-export default class ScheduleWeekView extends React.Component {
+export default class ScheduleWeekView extends BaseView {
   constructor(props) {
     super(props);
     this.today = moment().day()
@@ -28,20 +28,27 @@ export default class ScheduleWeekView extends React.Component {
   }
 
   static navigationOptions = {
-    title: 'Weekly Schedule',
+      headerTitle: (
+          <Image style={
+              { 
+                  flex: 1,
+                  alignSelf: 'center',
+                  resizeMode: 'contain'
+              }} 
+              source={require('../Images/header-logo.png')}
+          />
+      ),
+      headerStyle: {
+          backgroundColor: '#411121'
+      },
+      headerTintColor: '#ffffff',
+      headerLeft: (
+          <View />
+      ),
+      headerRight: (
+          <View />
+      )
   };
-
-  onSwipeLeft(gestureState) {
-    //todo
-  }
-
-  onSwipeRight(gestureState) {
-    //todo
-  }
-
-  onSwipe(gestureName, gestureState) {
-    this.setState({gestureName: gestureName, weekText: gestureName + " at " + moment().format('h:mm:ss a')});
-  }
 
   sortIntoWeeks(bookings){
     let weeks = [],
@@ -156,8 +163,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "flex-end",
-},
-plusButton: {
+  },
+  plusButton: {
     position: 'absolute',
     right: 20,
     bottom: 20,

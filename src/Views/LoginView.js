@@ -1,10 +1,11 @@
 import React from "react";
 import { Image, StyleSheet, Text, View, Linking } from "react-native";
+import BaseView from "./BaseView";
 import Footer from "../Components/Footer";
 import LoginForm from "../Components/LoginForm";
 import { LINK_COLOR } from "../constants";
 
-export default class LoginView extends React.Component {
+export default class LoginView extends BaseView {
   static navigationOptions = {
     header: null,
   };

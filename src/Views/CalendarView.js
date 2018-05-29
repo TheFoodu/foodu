@@ -1,17 +1,15 @@
 import React from "react";
 import moment from "moment";
 import { StyleSheet, Text, Dimensions, View } from "react-native";
+import BaseView from "./BaseView";
 import { Calendar } from 'react-native-calendars';
 const { width } = Dimensions.get('window');
 
-export default class CalendarView extends React.Component {
+export default class CalendarView extends BaseView {
     constructor(props){
         super(props)
         this.state = { markedDates: { "2018-05-16": { selected: true, marked: true, selectedColor: "#E06C63" } } };
     }
-    static navigationOptions = {
-        title: "Calendar",
-    };
 
     markDate = (day) => {
         const selectedDay = moment(day.dateString).format("YYYY-MM-DD");
@@ -28,6 +26,7 @@ export default class CalendarView extends React.Component {
         // Triggers component to render again, picking up the new state
         this.setState({ markedDates: updatedMarkedDates });
     };
+    
     render() {
         const { navigate } = this.props.navigation;
         return (
