@@ -9,7 +9,11 @@ const MapViewCallout = props => {
         <Text>{props.marker.description}</Text>
       </View>
       <View style={styles.buttonContainer}>
-        <Button color="white" title="Request" onPress={() => {}} />
+        <Button
+          color="white"
+          title="Request"
+          onPress={() => props.requestBooking()}
+        />
       </View>
     </View>
   );
