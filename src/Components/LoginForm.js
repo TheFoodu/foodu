@@ -33,6 +33,7 @@ export default class LoginForm extends React.Component {
       <View style={styles.container}>
         <TextInput
           placeholder="Email"
+          autoCorrect={false}
           placeholderTextColor="#f8f8f8"
           style={styles.input}
           autoCapitalize="none"
@@ -41,6 +42,7 @@ export default class LoginForm extends React.Component {
         />
         <TextInput
           onSubmitEditing={this._submitLogin}
+          autoCorrect={false}
           placeholder="Password"
           placeholderTextColor="#f8f8f8"
           style={styles.input}
@@ -68,7 +70,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 10,
     width: 220,
-    backgroundColor: "#1e3f72",
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    borderRadius: 20,
     color: "#FFF"
   }
 });

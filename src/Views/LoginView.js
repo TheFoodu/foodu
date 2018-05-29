@@ -13,8 +13,9 @@ export default class LoginView extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
+        <Image style={ styles.backgroundImage } source={require("../Images/login-background.png")}></Image>
         <View>
-          <Image style={styles.logo} source={require("../Images/foodu_logo.png")} />
+          <Image style={styles.logo} source={require("../Images/foodu-logoNormal.png")} />
         </View>
         <LoginForm navigate={navigate}/>
         <Text style={styles.emailInfoContainer}>
@@ -36,6 +37,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center"
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
   },
   logo: {
     height: 110,
