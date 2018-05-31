@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import { StyleSheet, Text, Dimensions, View } from "react-native";
+import { StyleSheet, Text, Dimensions, View, TouchableHighlight } from "react-native";
 import BaseView from "./BaseView";
 import { Calendar } from 'react-native-calendars';
 import { SALMON } from "../constants";
@@ -41,6 +41,11 @@ export default class CalendarView extends BaseView {
                     }}
                     onDayPress={this.markDate}
                 ></Calendar>
+                <View style={styles.submitContainer}>
+                    <TouchableHighlight style={ styles.submitButton } onPress={() => navigate("ScheduleWeek")}>
+                        <Text style={ styles.submitText }>Add to Schedule</Text>
+                    </TouchableHighlight>
+                </View>
             </View>
         );
     }
@@ -53,4 +58,20 @@ const styles = StyleSheet.create({
         alignItems: 'stretch',
         backgroundColor: '#ffffff'
     },
+    submitContainer: {
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'stretch',
+        paddingTop: 35
+    },
+    submitButton: {
+        backgroundColor: SALMON,
+    },
+    submitText: {
+        textAlign: 'center',
+        fontSize: 14,
+        fontFamily: 'montserrat',
+        color: '#ffffff',
+        lineHeight: 40
+    }
 });
