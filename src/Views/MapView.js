@@ -1,10 +1,11 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import BaseView from "./BaseView";
 import { MapView as ExpoMapView, Marker } from "expo";
 import MapViewCallout from "../Components/MapViewCallout";
 import { LINK_COLOR } from "../constants";
 
-export default class MapView extends React.Component {
+export default class MapView extends BaseView {
   constructor() {
     super();
 
@@ -13,10 +14,6 @@ export default class MapView extends React.Component {
       selectedMarker: null
     };
   }
-
-  static navigationOptions = {
-    title: "Request Booking"
-  };
 
   componentDidMount() {
     const serverMarkers = [
@@ -44,7 +41,7 @@ export default class MapView extends React.Component {
     // post booking uuid with venue id
     this.props.navigation.navigate("ScheduleWeek");
   };
-
+  
   render() {
     const { navigate } = this.props.navigation;
     return (

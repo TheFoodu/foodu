@@ -32,7 +32,10 @@ export default class App extends React.Component {
     await Font.loadAsync({
       'montserrat': require("./src/Fonts/Montserrat-Regular.ttf"),
       'montserrat-bold': require("./src/Fonts/Montserrat-Bold.ttf"),
-      'montserrat-semi-bold': require("./src/Fonts/Montserrat-SemiBold.ttf")
+      'montserrat-semi-bold': require("./src/Fonts/Montserrat-SemiBold.ttf"),
+      'roboto': require("./src/Fonts/Roboto-Regular.ttf"),
+      'roboto-medium': require("./src/Fonts/Roboto-Medium.ttf"),
+      'roboto-bold': require("./src/Fonts/Roboto-Bold.ttf"),
     });
     this.setState({ fontLoaded: true });
   }

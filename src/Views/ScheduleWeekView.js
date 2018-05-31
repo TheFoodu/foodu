@@ -1,12 +1,13 @@
 import React from "react";
 import moment from "moment";
-import Footer from "../Components/Footer";
-import ScheduleWeek from "../Components/ScheduleWeek";
-import ScheduleDetail from "../Components/ScheduleDetail"
 import { StyleSheet, Text, ScrollView, Dimensions, View, Image, TouchableHighlight } from "react-native";
-const { width } = Dimensions.get('window');
+import BaseView from "./BaseView"; 
+import ScheduleWeek from "../Components/ScheduleWeek";
+import ScheduleDetail from "../Components/ScheduleDetail";
+import { SALMON, BROWN } from "../constants";
+const { width, height } = Dimensions.get('window');
 
-export default class ScheduleWeekView extends React.Component {
+export default class ScheduleWeekView extends BaseView {
   constructor(props) {
     super(props);
     this.today = moment().day()
@@ -28,20 +29,28 @@ export default class ScheduleWeekView extends React.Component {
   }
 
   static navigationOptions = {
-    title: 'Weekly Schedule',
+      headerTitle: (
+          <Image style={
+              { 
+                  flex: 1,
+                  alignSelf: 'center',
+                  resizeMode: 'contain'
+              }} 
+              source={require('../Images/header-logo.png')}
+          />
+      ),
+      headerStyle: {
+        height: 60,
+        backgroundColor: '#411121'
+      },
+      headerTintColor: '#ffffff',
+      headerLeft: (
+          <View />
+      ),
+      headerRight: (
+          <View />
+      )
   };
-
-  onSwipeLeft(gestureState) {
-    //todo
-  }
-
-  onSwipeRight(gestureState) {
-    //todo
-  }
-
-  onSwipe(gestureName, gestureState) {
-    this.setState({gestureName: gestureName, weekText: gestureName + " at " + moment().format('h:mm:ss a')});
-  }
 
   sortIntoWeeks(bookings){
     let weeks = [],
@@ -98,14 +107,14 @@ export default class ScheduleWeekView extends React.Component {
     // do fetch call here to get real data
 
     let serverData = [
-      {UUID: 1, date: new Date(), name: "Venue 1", address: "Venue Address", timeRange: '1:00 PM - 4:00 PM'},
-      {UUID: 2, date: new Date().AddDays(1), name: "Venue 2", address: "Venue Address", timeRange: '7:00 PM - 9:00 PM'},
-      {UUID: 3, date: new Date().AddDays(3), name: "Venue 3", address: "Venue Address", timeRange: '2:00 PM - 7:00 PM'},
-      {UUID: 4, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
-      {UUID: 5, date: new Date().AddDays(7), name: "Venue 5", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
-      {UUID: 6, date: new Date().AddDays(12), name: "Venue 6", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'},
+      {UUID: 1, date: new Date(), name: "Venue 1", address: "Venue Address", timeRange: '1:00 PM - 4:00 PM', hasRequestedBooking: true},
+      {UUID: 2, date: new Date().AddDays(1), name: "Venue 2", address: "Venue Address", timeRange: '7:00 PM - 9:00 PM', hasRequestedBooking: false},
+      {UUID: 3, date: new Date().AddDays(3), name: "Venue 3", address: "Venue Address", timeRange: '2:00 PM - 7:00 PM', hasRequestedBooking: true},
+      {UUID: 4, date: new Date().AddDays(5), name: "Venue 4", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM', hasRequestedBooking: true},
+      {UUID: 5, date: new Date().AddDays(7), name: "Venue 5", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM', hasRequestedBooking: false},
+      {UUID: 6, date: new Date().AddDays(12), name: "Venue 6", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM', hasRequestedBooking: true},
       // Skip a week
-      {UUID: 7, date: new Date().AddDays(28), name: "Venue 6", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM'}
+      {UUID: 7, date: new Date().AddDays(28), name: "Venue 6", address: "Venue Address", timeRange: '12:00 PM - 8:00 PM', hasRequestedBooking: true}
     ]
 
     let weeks = this.sortIntoWeeks(serverData)
@@ -117,14 +126,17 @@ export default class ScheduleWeekView extends React.Component {
     const { navigate } = this.props.navigation;
     return(
       <View style={styles.container}>
-        <ScrollView onLayout={event => {
+        <ScrollView
+          style={styles.scrollview} 
+          onLayout={event => {
             // Handle rotation
             let { x, y, width, height } = event.nativeEvent.layout;
             this.setState({ deviceWidth: width });
           }} pagingEnabled={true} horizontal={true}>
           {this.state.bookingByWeeks.map(week => {
             let range = this.rangeTextFormatter(week);
-            return <ScheduleWeek key={range} weekText={range} deviceWidth={this.state.deviceWidth}>
+            return (
+              <ScheduleWeek key={range} weekText={range} deviceWidth={this.state.deviceWidth}>
                 {week.bookings.map(booking => (
                   <ScheduleDetail
                     key={booking.UUID}
@@ -132,13 +144,14 @@ export default class ScheduleWeekView extends React.Component {
                     navigate={navigate}
                   />
                 ))}
-              </ScheduleWeek>;
+              </ScheduleWeek>
+            )
           })}
         </ScrollView>
-        <TouchableHighlight style={styles.plusButton} onPress={() => navigate("Calendar")}>
-          <Image source={require('../Images/plus.png')}>
-          </Image>
+        <TouchableHighlight style={ styles.plusButton } onPress={() => navigate("Calendar")}>
+          <Image source={require('../Images/plus.png')} />
         </TouchableHighlight>
+        <View style={ styles.bottomBar }></View>
       </View>
     )
   }
@@ -155,17 +168,25 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "flex-end",
-},
-plusButton: {
+    height: height
+  },
+  plusButton: {
     position: 'absolute',
     right: 20,
     bottom: 20,
-    backgroundColor: "#E06C63",
+    backgroundColor: SALMON,
     width: 75,
     height: 75,
     borderRadius: 75/2,
     alignItems: 'center',
     justifyContent: 'center',
+    zIndex: 2
   },
+  scrollview: {
+    backgroundColor: '#ffffff'
+  },
+  bottomBar: {
+    height: 58, 
+    backgroundColor: BROWN
+  }
 });

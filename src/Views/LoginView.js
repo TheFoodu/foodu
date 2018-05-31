@@ -1,10 +1,11 @@
 import React from "react";
 import { Image, StyleSheet, Text, View, Linking } from "react-native";
+import BaseView from "./BaseView";
 import Footer from "../Components/Footer";
 import LoginForm from "../Components/LoginForm";
-import { LINK_COLOR } from "../constants";
+import { SALMON } from "../constants";
 
-export default class LoginView extends React.Component {
+export default class LoginView extends BaseView {
   static navigationOptions = {
     header: null,
   };
@@ -13,13 +14,14 @@ export default class LoginView extends React.Component {
     const { navigate } = this.props.navigation;
     return (
       <View style={styles.container}>
+        <Image style={ styles.backgroundImage } source={require("../Images/login-background.png")}></Image>
         <View>
-          <Image style={styles.logo} source={require("../Images/foodu_logo.png")} />
+          <Image style={styles.logo} source={require("../Images/foodu-logoNormal.png")} />
         </View>
         <LoginForm navigate={navigate}/>
         <Text style={styles.emailInfoContainer}>
           <Text style={styles.emailInfo}>Contact</Text>
-          <Text style={[styles.emailInfo, { color: LINK_COLOR }]} 
+          <Text style={[styles.emailInfo, { color: SALMON }]} 
               onPress={() => Linking.openURL("mailto:thefoodu@gmail.com?subject=Request to Join Foodu!")}>
             &nbsp;thefoodu@gmail.com&nbsp;
           </Text>
@@ -37,6 +39,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
+  },
   logo: {
     height: 110,
     width: 228
@@ -45,6 +54,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    fontSize: 16
+    fontSize: 16,
+    color: '#ffffff'
   },
 });

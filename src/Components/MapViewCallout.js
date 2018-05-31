@@ -1,20 +1,22 @@
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, Image, View, TouchableHighlight } from "react-native";
+import { SALMON, BROWN } from "../constants";
 
 const MapViewCallout = props => {
   return (
     <View style={styles.container}>
-      <View style={styles.textContainer}>
-        <Text>{props.marker.title}</Text>
-        <Text>{props.marker.description}</Text>
+      <View style={styles.venueContainer}>
+        <Image style={styles.venueImage} source={require("../Images/venue-img-square.png")} />
+        <View style={styles.venueInfoContainer}>
+          <Text style={styles.venueInfoHeader}>{props.marker.title}</Text>
+          <Text style={styles.venueInfoText}>{props.marker.description}</Text>
+        </View>
       </View>
-      <View style={styles.buttonContainer}>
-        <Button
-          color="white"
-          title="Request"
-          onPress={() => props.requestBooking()}
-        />
-      </View>
+      <TouchableHighlight style={styles.request} onPress={() => props.requestBooking()}>
+        <View style={styles.requestTextContainer}>
+          <Text style={styles.requestText}>Request</Text>
+        </View>
+      </TouchableHighlight>
     </View>
   );
 };
@@ -22,21 +24,51 @@ const MapViewCallout = props => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    height: 90,
-    width: "100%",
+    height: 81,
+    position: "absolute",
+    left: 0,
+    right: 0, 
+    bottom: 0,
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    alignItems: 'center'
   },
-  textContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    width: "70%"
+  venueContainer: {
+    flexDirection: 'row'
   },
-  buttonContainer: {
-    backgroundColor: "#E06C63",
-    width: "30%",
-    justifyContent: "center",
-    alignItems: "center"
+  venueImage: {
+    height: 81,
+    width: 81,
+    marginRight: 14
+  },
+  venueInfoContainer: {
+    justifyContent: 'center'
+  },
+  venueInfoHeader: {
+      color: BROWN, 
+      fontSize: 16, 
+      fontFamily: 'montserrat' 
+  },
+  venueInfoText: {
+      color: '#999', 
+      fontSize: 12, 
+      fontFamily: 'roboto' 
+  },
+  request: {
+    height: 81,
+    width: 81,
+    backgroundColor: SALMON,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  requestTextContainer: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  requestText: {
+    color: "#fff",
+    fontSize: 15,
+    fontFamily: 'montserrat'
   }
 });
 
