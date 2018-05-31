@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View, ScrollView, Text, Dimensions} from "react-native";
+import { SALMON } from '../constants';
 const { width } = Dimensions.get('window');
 
 export default class ScheduleWeek extends React.Component {
@@ -40,8 +41,8 @@ const styles = StyleSheet.create({
     dateContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        height: 30,
-        backgroundColor: '#555'
+        height: 60,
+        backgroundColor: SALMON
     },
     dateText: {
         color: '#f8f8f8',

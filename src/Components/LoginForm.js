@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, StyleSheet, View, TextInput, Alert, TouchableHighlight, Text } from "react-native";
+import { SALMON } from "../constants";
 
 import firebase from "../../firebase";
 
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 20
   },
   signInContainer: {
-    backgroundColor: "#E06C63",
+    backgroundColor: SALMON,
     borderRadius: 20,
     height: 40,
     shadowColor: '#000000',

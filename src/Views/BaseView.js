@@ -18,6 +18,7 @@ export default class BaseView extends React.Component {
             />
         ),
         headerStyle: {
+            height: 60,
             backgroundColor: '#411121'
         },
         headerTintColor: '#ffffff',

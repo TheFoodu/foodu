@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View, Linking } from "react-native";
 import BaseView from "./BaseView";
 import Footer from "../Components/Footer";
 import LoginForm from "../Components/LoginForm";
-import { LINK_COLOR } from "../constants";
+import { SALMON } from "../constants";
 
 export default class LoginView extends BaseView {
   static navigationOptions = {
@@ -21,7 +21,7 @@ export default class LoginView extends BaseView {
         <LoginForm navigate={navigate}/>
         <Text style={styles.emailInfoContainer}>
           <Text style={styles.emailInfo}>Contact</Text>
-          <Text style={[styles.emailInfo, { color: LINK_COLOR }]} 
+          <Text style={[styles.emailInfo, { color: SALMON }]} 
               onPress={() => Linking.openURL("mailto:thefoodu@gmail.com?subject=Request to Join Foodu!")}>
             &nbsp;thefoodu@gmail.com&nbsp;
           </Text>
