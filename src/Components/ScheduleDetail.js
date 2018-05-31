@@ -1,36 +1,47 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Dimensions, Image } from "react-native";
 import Footer from "../Components/Footer";
+import ScheduleWeekModal from "../Components/ScheduleWeekModal";
 import moment from "moment";
 import { DARK_GREY, LIGHT_GREY, SALMON, BROWN } from '../constants';
 const { width, height } = Dimensions.get('window');
 
 export default class ScheduleDetail extends React.Component {
-    _onRequestPress = (detailUUID) => {
-        this.props.navigate("BookingDetail", { detailId: detailUUID })
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      hasRequestedBooking: false,
+      modalVisible: false
+    };
+  }
+
+  _onRequestPress = detailUUID => {
+    this.props.navigate("BookingDetail", { detailId: detailUUID });
+  };
 
     _onSearchPress = (date) => {
         this.props.navigate("Map", { searchDate: this.props.date })
     }
 
-    _getDetailSection = () => {
-        return this.props.hasRequestedBooking ? this._getRequestedBooking() : this._getSearchSection();
-    };
+  _getDetailSection = () => {
+    return !this.state.hasRequestedBooking
+      ? this._getRequestedBooking()
+      : this._getSearchSection();
+  };
 
-    _getRequestedBooking = () => {
-        const { name, address, timeRange } = this.props;
-        return (
-            <View style={ [styles.containerBox, styles.venueInfoContainer]}>
-                <View style={ styles.topBar }></View>
-                <Image style={ styles.venueImage } source={require("../Images/venue-img.png")} />
-                <View>
-                    <Text style={ styles.venueInfoHeader }>{name}</Text>
-                    <Text style={ styles.venueInfoText }>{address}</Text>
-                </View>
-            </View>
-        );
-    }
+  _getRequestedBooking = () => {
+    const { name, address, timeRange } = this.props;
+    return (
+      <TouchableOpacity
+        style={[styles.containerBox, { backgroundColor: "#FFFBB5" }]}
+        onPress={() => this._showModal(!this.state.modalVisible)}
+      >
+        <Text style={[styles.detailText, { fontWeight: "bold" }]}>{name}</Text>
+        <Text style={styles.detailText}>{address}</Text>
+        <Text style={styles.detailText}>{timeRange}</Text>
+      </TouchableOpacity>
+    );
+  };
 
     _getSearchSection = () => {
         return (
@@ -45,19 +56,32 @@ export default class ScheduleDetail extends React.Component {
         );
     }
 
-    render() {
-        const { timeRange } = this.props;
-        const firstOrLastStyling = (this.props.location === "first") ? styles.first : (this.props.location === "last") ? styles.last : {};
-        return (
-            <View style={ [styles.container, firstOrLastStyling] }>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text style={ styles.dateText }>{moment(this.props.date).format('ddd D, YYYY')}</Text>
-                    <Text style={ styles.timeText }>{timeRange}</Text>
-                </View>
-                { this._getDetailSection() }
-            </View>
-        );
-    }
+  _showModal = visible => {
+    this.setState({ modalVisible: visible });
+  };
+
+  render() {
+    const firstOrLastStyling =
+      this.props.location === "first"
+        ? styles.first
+        : this.props.location === "last"
+          ? styles.last
+          : {};
+    return (
+      <View style={[styles.container, firstOrLastStyling]}>
+        <Text style={styles.dateText}>
+          {moment(this.props.date).format("ddd D YYYY")}
+        </Text>
+        {this._getDetailSection()}
+        {this.state.modalVisible && (
+          <ScheduleWeekModal
+            setModalVisible={this._showModal}
+            modalVisible={this.state.modalVisible}
+          />
+        )}
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
