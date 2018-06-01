@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { StyleSheet, Modal, Text, TouchableOpacity, View } from "react-native";
+import {
+  Image,
+  StyleSheet,
+  Modal,
+  Text,
+  TouchableOpacity,
+  View
+} from "react-native";
 
 export default class ScheduleWeekModal extends Component {
   render() {
@@ -21,7 +28,16 @@ export default class ScheduleWeekModal extends Component {
             }
           >
             <View style={styles.innerContainer}>
-              <Text>Hello World!</Text>
+              <Image
+                style={styles.banner}
+                source={require("../Images/Barrel-Bar-at-dusk-1Normal.png")}
+              />
+              <Image
+                style={styles.circleImage}
+                source={require("../Images/blur-bread-bun.jpg")}
+              />
+              <Text>Restraunt Name</Text>
+              <Text>Address</Text>
             </View>
           </TouchableOpacity>
         </Modal>
@@ -38,25 +54,20 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,.5)"
   },
   innerContainer: {
-    borderRadius: 20,
-    justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
     width: 300,
     height: 300
   },
-  containerBox: {
-    borderRadius: 4,
-    borderWidth: 0.7,
-    borderColor: "#666",
-    padding: 20
+  banner: {
+    width: 300,
+    height: 100
   },
-  dateText: {
-    marginTop: 10,
-    marginBottom: 5,
-    fontSize: 20
-  },
-  detailText: {
-    fontSize: 18
+  circleImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    position: "relative",
+    top: -50
   }
 });
