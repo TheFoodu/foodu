@@ -7,7 +7,7 @@ _Connecting food trucks to their communities_
 ## Sections
 
 * [Introduction](#introduction)
-* [Prerequsities](#Prerequsities)
+* [Prerequisites](#prerequisites)
 * [Getting Started](#getting-started)
 * [Built With](#built-with)
 * [Contributors](#contributors)
@@ -27,9 +27,9 @@ Instructions for getting started will be found in the following GitHub repositor
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
-## Prerequsities
+## prerequisites
 
-Prerequsities for running Foodu locally include:
+prerequisites for running Foodu locally include:
 
 * [NPM](https://www.npmjs.com/)
 * [Yarn](https://yarnpkg.com/)
