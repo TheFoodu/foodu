@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Alert } from "react-native";
 import BaseView from "./BaseView";
 import { MapView as ExpoMapView, Marker } from "expo";
 import MapViewCallout from "../Components/MapViewCallout";
@@ -16,25 +16,31 @@ export default class MapView extends BaseView {
   }
 
   componentDidMount() {
-    const serverMarkers = [
-      {
-        latlng: {
-          latitude: 39.7487,
-          longitude: -105.0077
-        },
-        title: "Joe's Pizza Shoppe",
-        description: "Yummmy Pizza"
-      },
-      {
-        latlng: {
-          latitude: 39.7537,
-          longitude: -105.0007
-        },
-        title: "Taco Shack",
-        description: "Spicy Tacos"
-      }
-    ];
-    this.setState({ markers: serverMarkers });
+    fetch('https://data.colorado.gov/resource/ic4i-9zku.json')
+    .then(response => response.json())
+    .then(myJson => {
+        return myJson.filter(x => x.location != undefined).map(x => {
+          return {
+            "latitude": x.location.coordinates[1],
+            "longitude": x.location.coordinates[0],
+            "title": x.doing_business_as,
+            "address": x.location_address,
+            "city": x.location_city,
+            "state": x.location_state,
+            "zip": x.location_zip.substr(0, 5)
+          }
+
+      })
+    })
+    .then(myMarkers => this.setState({ markers: myMarkers }))
+    .catch(error =>  Alert.alert(
+      "An Error Has Occured", 
+      error.message,
+      [
+        {text: 'OK', onPress: () => console.log('OK Pressed')},
+      ],
+      { cancelable: false }
+    ))
   }
 
   requestBooking = () => {
@@ -44,6 +50,7 @@ export default class MapView extends BaseView {
 
   render() {
     const { navigate } = this.props.navigation;
+    
     return (
       <View style={{ flex: 1 }}>
         <ExpoMapView
@@ -58,7 +65,10 @@ export default class MapView extends BaseView {
           {this.state.markers.map((marker, index) => (
             <ExpoMapView.Marker
               key={index}
-              coordinate={marker.latlng}
+              coordinate={{
+                latitude: marker.latitude, 
+                longitude: marker.longitude
+              }}
               onPress={() => this.setState({ selectedMarker: marker })}
             />
           ))}
