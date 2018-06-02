@@ -1,15 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, Image, View, TouchableHighlight } from "react-native";
-import { SALMON, BROWN } from "../constants";
+import { SALMON, BROWN } from "../constants"; 
 
 const MapViewCallout = props => {
   return (
     <View style={styles.container}>
       <View style={styles.venueContainer}>
-        <Image style={styles.venueImage} source={require("../Images/venue-img-square.png")} />
         <View style={styles.venueInfoContainer}>
           <Text style={styles.venueInfoHeader}>{props.marker.title}</Text>
-          <Text style={styles.venueInfoText}>{props.marker.description}</Text>
+          <Text style={styles.venueInfoText}>{props.marker.address}</Text>
+          <Text style={styles.venueInfoText}>{props.marker.city} {props.marker.state}, {props.marker.zip}</Text>
         </View>
       </View>
       <TouchableHighlight style={styles.request} onPress={() => props.requestBooking()}>
@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   venueContainer: {
-    flexDirection: 'row'
+    flexDirection: 'row',
+    maxWidth: '75%'
   },
   venueImage: {
     height: 81,
@@ -42,7 +43,9 @@ const styles = StyleSheet.create({
     marginRight: 14
   },
   venueInfoContainer: {
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginLeft: 10,
+    marginRight: 10
   },
   venueInfoHeader: {
       color: BROWN, 
