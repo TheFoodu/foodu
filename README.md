@@ -67,12 +67,12 @@ Scan the following QR code to run the application on your mobile device, or foll
 
 ## Contributors
 
-* (John Leach)[https://github.com/johnredcouch]
-* (Shawn Meek)[https://github.com/iamshawnmeek]
-* (Greg Moore)[https://github.com/gmoore-erg]
-* (Nick Teets)[https://github.com/nicktu12]
-* (Jonah Walker)[https://github.com/SupposedlySam]
-* (Dione Wilson)[https://github.com/dionew1]
+* [John Leach](https://github.com/johnredcouch)
+* [Shawn Meek](https://github.com/iamshawnmeek)
+* [Greg Moore](https://github.com/gmoore-erg)
+* [Nick Teets](https://github.com/nicktu12)
+* [Jonah Walker](https://github.com/SupposedlySam)
+* [Dione Wilson](https://github.com/dionew1)
 
 ## License
 
