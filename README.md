@@ -63,8 +63,7 @@ Scan the following QR code to run the application on your mobile device, or foll
 
 * React Native
 * Google Maps
-* Firebase
-* Expo
+* Google Firebase
 
 ## Contributors
 

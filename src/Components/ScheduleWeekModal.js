@@ -36,8 +36,8 @@ export default class ScheduleWeekModal extends Component {
                 style={styles.circleImage}
                 source={require("../Images/blur-bread-bun.jpg")}
               />
-              <Text>Restraunt Name</Text>
-              <Text>Address</Text>
+              <Text style={styles.name}>Restraunt Name</Text>
+              <Text style={styles.address}>Address</Text>
             </View>
           </TouchableOpacity>
         </Modal>
@@ -57,7 +57,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "#fff",
     width: 300,
-    height: 300
+    height: 300,
+    borderRadius: 20,
+    overflow: "hidden"
   },
   banner: {
     width: 300,
@@ -69,5 +71,13 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     position: "relative",
     top: -50
+  },
+  name: {
+    fontSize: 16,
+    color: "#341739"
+  },
+  address: {
+    fontSize: 12,
+    color: "#888888"
   }
 });

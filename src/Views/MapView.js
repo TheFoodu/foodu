@@ -41,7 +41,7 @@ export default class MapView extends BaseView {
     // post booking uuid with venue id
     this.props.navigation.navigate("ScheduleWeek");
   };
-  
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -59,7 +59,6 @@ export default class MapView extends BaseView {
             <ExpoMapView.Marker
               key={index}
               coordinate={marker.latlng}
-              image={require("../Images/pin-sNormal_1.png")}
               onPress={() => this.setState({ selectedMarker: marker })}
             />
           ))}
