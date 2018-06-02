@@ -17,30 +17,31 @@ const RootStack = StackNavigator(
     Map: { screen: MapView }
   },
   {
-    initialRouteName: "ScheduleWeek"
-  },
+    initialRouteName: "Login"
+  }
 );
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fontLoaded: false,
-    }
+      fontLoaded: false
+    };
   }
   async componentDidMount() {
     await Font.loadAsync({
-      'montserrat': require("./src/Fonts/Montserrat-Regular.ttf"),
-      'montserrat-bold': require("./src/Fonts/Montserrat-Bold.ttf"),
-      'montserrat-semi-bold': require("./src/Fonts/Montserrat-SemiBold.ttf"),
-      'roboto': require("./src/Fonts/Roboto-Regular.ttf"),
-      'roboto-medium': require("./src/Fonts/Roboto-Medium.ttf"),
-      'roboto-bold': require("./src/Fonts/Roboto-Bold.ttf"),
+      montserrat: require("./src/Fonts/Montserrat-Regular.ttf"),
+      "montserrat-bold": require("./src/Fonts/Montserrat-Bold.ttf"),
+      "montserrat-semi-bold": require("./src/Fonts/Montserrat-SemiBold.ttf"),
+      roboto: require("./src/Fonts/Roboto-Regular.ttf"),
+      "roboto-medium": require("./src/Fonts/Roboto-Medium.ttf"),
+      "roboto-bold": require("./src/Fonts/Roboto-Bold.ttf")
     });
     this.setState({ fontLoaded: true });
   }
 
-  renderRootStack = () => this.state.fontLoaded ? (<RootStack style={{ flex: 1 }}/>) : null;
+  renderRootStack = () =>
+    this.state.fontLoaded ? <RootStack style={{ flex: 1 }} /> : null;
 
   render() {
     return this.renderRootStack();

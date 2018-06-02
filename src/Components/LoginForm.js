@@ -1,8 +1,16 @@
 import React from "react";
-import { Button, StyleSheet, View, TextInput, Alert, TouchableHighlight, Text } from "react-native";
+import {
+  Button,
+  StyleSheet,
+  View,
+  TextInput,
+  Alert,
+  TouchableHighlight,
+  Text
+} from "react-native";
 import { SALMON } from "../constants";
 
-import firebase from "firebase";
+import firebase from "../../firebase";
 
 export default class LoginForm extends React.Component {
   constructor() {
@@ -22,11 +30,12 @@ export default class LoginForm extends React.Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
+      .then(response => console.error(response))
       .catch(error => {
         Alert.alert(error.message);
         this.setState({ email: "", password: "" });
       })
-      .then(response => this.props.navigate("ScheduleWeek"))
+      .then(response => this.props.navigate("ScheduleWeek"));
   };
 
   render() {
@@ -38,7 +47,7 @@ export default class LoginForm extends React.Component {
           placeholderTextColor="#f8f8f8"
           style={styles.input}
           autoCapitalize="none"
-          underlineColorAndroid='transparent'
+          underlineColorAndroid="transparent"
           value={this.state.email}
           onChangeText={text => this.setState({ email: text })}
         />
@@ -49,7 +58,7 @@ export default class LoginForm extends React.Component {
           placeholderTextColor="#f8f8f8"
           style={styles.input}
           autoCapitalize="none"
-          underlineColorAndroid='transparent'
+          underlineColorAndroid="transparent"
           value={this.state.password}
           onChangeText={text => this.setState({ password: text })}
         />
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
     backgroundColor: SALMON,
     borderRadius: 20,
     height: 40,
-    shadowColor: '#000000',
+    shadowColor: "#000000",
     shadowOffset: {
       width: 0,
       height: 3
@@ -83,8 +92,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 1.0
   },
   signInText: {
-    textAlign: 'center',
-    color: '#fff',
+    textAlign: "center",
+    color: "#fff",
     fontSize: 14,
     lineHeight: 40
   },
@@ -93,7 +102,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     padding: 10,
     width: 220,
-    backgroundColor: 'rgba(255, 255, 255, 0.4)',
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
     borderRadius: 20,
     color: "#FFF"
   }
