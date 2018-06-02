@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, Image, View, TouchableHighlight } from "react-native";
-import { SALMON, BROWN } from "../constants"; 
+import { SALMON, BROWN } from "../constants";
 
 const MapViewCallout = props => {
   return (
