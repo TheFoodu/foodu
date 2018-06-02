@@ -11,6 +11,7 @@ _Connecting food trucks to their communities_
 * [Getting Started](#getting-started)
 * [Built With](#built-with)
 * [Contributors](#contributors)
+* [License](#license)
 
 ## Introduction
 
@@ -73,3 +74,7 @@ Scan the following QR code to run the application on your mobile device, or foll
 * (Nick Teets)[https://github.com/nicktu12]
 * (Jonah Walker)[https://github.com/SupposedlySam]
 * (Dione Wilson)[https://github.com/dionew1]
+
+## License
+
+This project is licensed under the MIT License - see [LICENSE.md](LICENSE.md) for details.
