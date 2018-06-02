@@ -47,7 +47,7 @@ export default class MapView extends BaseView {
     // post booking uuid with venue id
     this.props.navigation.navigate("ScheduleWeek");
   };
-  
+
   render() {
     const { navigate } = this.props.navigation;
     
