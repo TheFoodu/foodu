@@ -22,15 +22,17 @@ export default class LoginForm extends React.Component {
     };
   }
 
-  _submitLogin = (email, password) => {
+  _submitLogin = () => {
+    let email = this.state.email
+    let password = this.state.password
     if (email === "" && password === "") {
       this.props.navigate("ScheduleWeek");
       return;
     }
+    
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(response => console.error(response))
       .catch(error => {
         Alert.alert(error.message);
         this.setState({ email: "", password: "" });
@@ -52,7 +54,8 @@ export default class LoginForm extends React.Component {
           onChangeText={text => this.setState({ email: text })}
         />
         <TextInput
-          onSubmitEditing={this._submitLogin}
+          secureTextEntry={true}
+          onSubmitEditing={() => this._submitLogin(this.state.email, this.state.password)}
           autoCorrect={false}
           placeholder="Password"
           placeholderTextColor="#f8f8f8"
@@ -64,9 +67,7 @@ export default class LoginForm extends React.Component {
         />
         <TouchableHighlight
           style={styles.signInContainer}
-          onPress={() =>
-            this._submitLogin(this.state.email, this.state.password)
-          }
+          onPress={() => this._submitLogin(this.state.email, this.state.password)}
         >
           <Text style={styles.signInText}>Sign In</Text>
         </TouchableHighlight>

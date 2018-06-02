@@ -5,7 +5,7 @@ import BaseView from "./BaseView";
 import { Calendar } from 'react-native-calendars';
 import { SALMON } from "../constants";
 const { width } = Dimensions.get('window');
-import firebase from "firebase";
+import firebase from "../../firebase";
 
 export default class CalendarView extends BaseView {
     constructor(props){
@@ -24,17 +24,20 @@ export default class CalendarView extends BaseView {
     }
 
     createBooking() {
+        debugger
+        const { navigate } = this.props.navigation;
         fetch("https://foodu-api.herokuapp.com/api/v1/bookings", {
             method: 'POST',
             body: JSON.stringify({
-                authId: firebase.auth().current.uid, 
+                authId: firebase.auth().currentUser.uid, 
                 markedDates: Object.keys(this.state.markedDates)})
           }).then(res => res.json())
-          .catch(error => console.error('Error:', error))
+          .catch(error => Alert.alert("Error", "An error has occured when submitting your schedule. Please try again."))
           .then(response => navigate("ScheduleWeek"));
     }
 
     markDate = (day) => {
+        debugger
         const selectedDay = moment(day.dateString).format("YYYY-MM-DD");
         let selected = true;
         if (this.state.markedDates[selectedDay]) {
@@ -75,7 +78,6 @@ export default class CalendarView extends BaseView {
     }
     
     render() {
-        const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
                 {this.state.ready && <View style={styles.container}>
