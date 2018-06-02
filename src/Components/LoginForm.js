@@ -2,7 +2,7 @@ import React from "react";
 import { Button, StyleSheet, View, TextInput, Alert, TouchableHighlight, Text } from "react-native";
 import { SALMON } from "../constants";
 
-import firebase from "../../firebase";
+import firebase from "firebase";
 
 export default class LoginForm extends React.Component {
   constructor() {
@@ -22,11 +22,11 @@ export default class LoginForm extends React.Component {
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then(response => this.props.navigate("ScheduleWeek"))
       .catch(error => {
         Alert.alert(error.message);
         this.setState({ email: "", password: "" });
-      });
+      })
+      .then(response => this.props.navigate("ScheduleWeek"))
   };
 
   render() {

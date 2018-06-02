@@ -8,6 +8,8 @@ import { LINK_COLOR } from "../constants";
 export default class MapView extends BaseView {
   constructor() {
     super();
+    this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
+    this.requestBooking = this.requestBooking.bind(this);
 
     this.state = {
       markers: [],
@@ -15,21 +17,25 @@ export default class MapView extends BaseView {
     };
   }
 
+  forceUpdateHandler(){
+    this.forceUpdate();
+  };
+
   componentDidMount() {
-    fetch('https://data.colorado.gov/resource/ic4i-9zku.json')
+    const { navigate } = this.props.navigation;
+    fetch("https://data.colorado.gov/resource/ic4i-9zku.json")
     .then(response => response.json())
-    .then(myJson => {
-        return myJson.filter(x => x.location != undefined).map(x => {
+    .then(tastingRoomDataset => {
+        return tastingRoomDataset.filter(x => x.location != undefined).map(x => {
           return {
-            "latitude": x.location.coordinates[1],
-            "longitude": x.location.coordinates[0],
-            "title": x.doing_business_as,
-            "address": x.location_address,
+            "venueName": x.doing_business_as,
+            "street": x.location_address,
             "city": x.location_city,
             "state": x.location_state,
-            "zip": x.location_zip.substr(0, 5)
+            "zip": x.location_zip.substr(0, 5),
+            "latitude": x.location.coordinates[1],
+            "longitude": x.location.coordinates[0]
           }
-
       })
     })
     .then(myMarkers => this.setState({ markers: myMarkers }))
@@ -37,15 +43,26 @@ export default class MapView extends BaseView {
       "An Error Has Occured", 
       error.message,
       [
-        {text: 'OK', onPress: () => console.log('OK Pressed')},
+        {text: 'OK', onPress: () => navigate("ScheduleWeek")},
+        {text: 'Retry', onPress: () => this.forceUpdateHandler()}
       ],
       { cancelable: false }
     ))
   }
 
   requestBooking = () => {
-    // post booking uuid with venue id
-    this.props.navigation.navigate("ScheduleWeek");
+    const { navigate } = this.props.navigation;
+    debugger;
+    fetch("https://foodu-api.herokuapp.com/api/v1/upsert_schedule", {
+      method: 'POST',
+      body: JSON.stringify({
+        "authId" : this.firebase.auth().current.uid,
+        "date": this.props.searchDate,
+        ...this.state.selectedMarker
+      }),
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => navigate("ScheduleWeek"));
   };
   
   render() {
@@ -61,6 +78,7 @@ export default class MapView extends BaseView {
             latitudeDelta: 0.09,
             longitudeDelta: 0.04
           }}
+          
         >
           {this.state.markers.map((marker, index) => (
             <ExpoMapView.Marker

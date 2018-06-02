@@ -7,7 +7,7 @@ const MapViewCallout = props => {
     <View style={styles.container}>
       <View style={styles.venueContainer}>
         <View style={styles.venueInfoContainer}>
-          <Text style={styles.venueInfoHeader}>{props.marker.title}</Text>
+          <Text style={styles.venueInfoHeader}>{props.marker.venueName}</Text>
           <Text style={styles.venueInfoText}>{props.marker.address}</Text>
           <Text style={styles.venueInfoText}>{props.marker.city} {props.marker.state}, {props.marker.zip}</Text>
         </View>
