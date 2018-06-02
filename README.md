@@ -23,7 +23,7 @@ Instructions for getting started will be found in the following GitHub repositor
 
 [Foodu Native Application Repository](https://github.com/TheFoodu/foodu)
 
-[Foodu Backend Repository](https://github.com/TheFoodu/foodu-be)
+[Foodu Backend Repository](https://github.com/TheFoodu/foodu-api)
 
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
@@ -43,7 +43,7 @@ Download this repository to your local computer with the following terminal comm
 git clone https://github.com/TheFoodu/foodu/
 ```
 
-Navigate to the foodu directory and install project dependancies with the following terminal command:
+Navigate to the Foodu directory and install project dependancies with the following terminal command:
 
 ```
 npm install
